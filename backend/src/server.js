@@ -1,7 +1,9 @@
 import express from 'express';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import auth from './routes/auth.route.js';
+import authRoutes from './routes/auth.route.js';
+import todoRoutes from './routes/todo-route.js';
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +18,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use('/auth', auth);
+app.use('/auth', authRoutes);
+app.use('/todos', todoRoutes );
 
 app.listen(PORT, () => console.log(`Server is started on port ${PORT}`));
